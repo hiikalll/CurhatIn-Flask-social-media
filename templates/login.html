@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+    
+    {% block title %}
+    Login
+    {% endblock %}
+    
+    {% block body %}
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+            <div class="container px-5">
+                <a class="navbar-brand justify-content-end fw-bold" href="{{url_for('index')}}"><img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="CurhatIn" width="40" height="40">CurhatIn</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+                        <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="{{url_for('index')}}"><i class="bi-arrow-bar-left"></i>Back</a>
+                </div>
+            </div>
+        </nav>
+        <div class=" pb-4">
+        <div class="">
+            <div class=" px-5">
+                <div class="row gx-5 align-items-center align-content-center">
+                    <div class="col-lg-6">
+                        <div class="align-item-center justify-content-center">
+                            <div >
+                                <img src="{{ url_for('static', filename='assets/img/chat.png') }}" class="img-fluid w-25" alt="">
+                            </div>
+                        </div>
+                        <h1>Chat . Share . Help</h1>
+                        <p class="lead">
+                            Share your story with the world.
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <h3 class="card-title">Login</h3>
+                                <form action="{{url_for('login')}}" method="POST">
+                                    <div class="form-group pb-3">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                                    </div>
+                                    <div class="justify-content-between row">
+                                        <div class="col-2">
+                                            <button type="submit" class="btn btn-primary">Login</button>
+                                        </div>
+                                        <div class="col-8 justify-content-end d-flex align-item-center">
+                                            <a href="{{ url_for('register') }}" class="text-white">Register</a>
+                                        </div>                                    
+                                    </div>
+                                </form>
+                                 
+                                {% for message in get_flashed_messages() %}
+                                {{ message }}
+                                {% endfor %} 
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 200px;"></div>
+                </div>
+            </div>
+        </div>  
+        </div>  
+
+
+      
+    {% endblock %}
+    

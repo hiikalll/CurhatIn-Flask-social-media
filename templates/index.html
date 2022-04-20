@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+OnlyFans
+{% endblock %}
+
+{% block body %}
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+      <div class="container px-5">
+          <a class="navbar-brand fw-bold" href="{{url_for('index')}}"><img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="CurhatIn" width="40" height="40">CurhatIn</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="bi-list"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto my-3 my-lg-0">
+                  <li class="nav-item"><a class="nav-link me-lg-3" href="{{url_for('index')}}">About</a></li>
+              </ul>
+                  <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="{{url_for('login')}}">Login</a>
+          </div>
+      </div>
+  </nav>
+  <div>
+      <div class="container px-5">
+          <div class="row gx-5 align-items-center align-content-center">
+              <div class="col-lg-6">
+                  <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                      <h1 class="display-1 lh-1 mb-3">Connect and <span class="text-primary">Share</span> Easily.</h1>
+                      <p class="lead fw-normal text-muted mb-5">Share and make a better world.</p>
+                      <a class="btn btn-primary rounded-pill p-3" href="{{url_for('register')}}">Join Now</a>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="align-item-center">
+                    <div >
+                        <img src="{{ url_for('static', filename='assets/img/chat.png') }}" class="img-fluid w-100" alt="">
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+{% endblock %}
+ 
+
+
+
