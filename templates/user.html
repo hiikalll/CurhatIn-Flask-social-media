@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Profile
+{{ user.username }}'s Profile
 {% endblock %}
 
 {% block body %}
@@ -25,7 +25,7 @@ Profile
             <div class="col-lg-12">
                 <div class="card shadow mb-4">
                     <div class="card-header bg-dark  py-3">
-                        <h6 class="m-0 font-weight-bold text-white">About {{ username }}</h6>
+                        <h6 class="m-0 font-weight-bold text-white">About {{ user.username }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -33,10 +33,36 @@ Profile
                                 <img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="200" height="200" class="img-thumbnail rounded-circle">
                             </div>
                             <div class="col-lg-8">
-                                <h4>@{{ username }}</h4>
+                                <h4>@{{ user.username }}</h4>
                                 <h4>{{ email }}</h4>
-
-                            </div>
+                                <br>
+                                <div class="d-flex ">
+                                    <div class="me-4">
+                                        <div class="d-block align-items-center">
+                                            <div><a href="{{ url_for('show_following', username=user.username) }}" class="text-decoration-none">{{ user.following() | length }}</a></div>
+                                            <div class="text-muted">Following</div>
+                                        </div>
+                                    </div>
+                                    <div class="me-2">
+                                        <div class="d-block align-items-center">
+                                            <div><a href="{{ url_for('show_followers', username=user.username) }}" class="text-decoration-none">{{ user.followers() | length }}</a></div>
+                                            <div class="text-muted">Followers</div>
+                                        </div>
+                                </div>
+                            </div><br>
+                            {% if user.username != session.username %}
+                                {% if session.logged_in %}
+                                    {% if active_user.is_following(user) %}
+                                        <form action="{{ url_for('unfollow_user', username=user.username) }}" method="post">
+                                            <input type="submit" class="btn btn-outline-primary rounded-pill px-3 mb-2 mb-lg-0" value="unfollow">
+                                        </form>
+                                    {% else %}
+                                        <form action="{{ url_for('follow_user', username=user.username) }}" method="post">
+                                            <input type="submit" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" value="follow">
+                                        </form>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -58,18 +84,21 @@ Profile
                                     <div class="card shadow mb-4">
                                         <div class="card-header bg-white py-3 d-flex justify-content-between">
                                             <div>
-                                                <h6 class="m-0 text-black"><img src="" alt=""><img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="20" height="20" class="img-thumbnail rounded-circle"> {{ username }}</h6>
+                                                <h6 class="m-0 text-black"><img src="" alt=""><img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="20" height="20" class="img-thumbnail rounded-circle"><a href="{{ url_for('user_profile', username=message.user.username) }}" class="text-decoration-none"> @{{ message.user.username }}</a></h6>
                                             </div>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                  Dropdown button
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
+                                            {% if myself %}
+                                            <div>
+                                                <small class="text-muted"> {{ message.published_at  }} </small>    
                                             </div>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <a href="/edit?id={{message.id}}"><i class="bi-pencil-fill"></i></a>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <a href="/delete?id={{message.id}}"><i class="bi-trash-fill"></i></a>
+                                                </div>
+                                            </div>
+                                            {% endif %}
                                         </div>
                                             
                                         <div class="card-body">
@@ -91,8 +120,3 @@ Profile
 
     
 {% endblock %}
-
-
-
-
-

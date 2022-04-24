@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+    
+{% block title %}
+    {{ username }}
+{% endblock %}
+
+        
+{% block body %}
+        
+        <body id="page-top">
+        
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand justify-content-end fw-bold" href="{{url_for('index')}}"><img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="CurhatIn" width="40" height="40">CurhatIn</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="bi-list"></i>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+                            <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="{{url_for('index')}}"><i class="bi-arrow-bar-left"></i>Back</a>
+                    </div>
+                </div>
+            </nav>
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header bg-dark  py-3">
+                                <h6 class="m-0 font-weight-bold text-white">About {{ username }}</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 rounded">
+                                        <img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="200" height="200" class="img-thumbnail rounded-circle">
+                                    </div>
+{% endblock %}

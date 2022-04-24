@@ -16,10 +16,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
                         <i><img src="{{ url_for('static', filename='assets/img/bell.png') }}" alt="notification" width="30" height="30" class="me-3"></i>
-                        <a href="{{url_for('user_profile', username=user.username)}}"><img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="30" height="30" class="me-3"></a>
+                        <a href="{{ url_for('user_profile', username=session.username) }}"><img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="30" height="30" class="me-3"></a>
                 </div>
                 <div class="justify-content-end">
-                    <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="{{url_for('index')}}"><i class="bi-arrow-bar-left"></i>Back</a>
+                    <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="{{url_for('logout')}}"><i class="bi-arrow-bar-left"></i>Logout</a>
             </div>
         </nav>
 
@@ -41,6 +41,41 @@
             </div>
              
         </div>  
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-dark  py-3">
+                            <h6 class="m-0 font-weight-bold text-white">Story</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {% for message in messages %}
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header bg-white py-3 d-flex justify-content-between">
+                                                <div>
+                                                    <h6 class="m-0 text-black"><img src="" alt=""><img src="{{ url_for('static', filename='assets/img/user.png') }}" alt="user" width="20" height="20" class="img-thumbnail rounded-circle"><a href="{{ url_for('user_profile', username=message.user.username) }}" class="text-decoration-none"> @{{ message.user.username }}</a></h6>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12 rounded">
+                                                        {{ message.content }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endblock %}
 
     
