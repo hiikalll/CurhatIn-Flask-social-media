@@ -89,8 +89,7 @@ def home():
     
     user = get_current_user()
     messages = (Message.select()
-                .where((Message.user << user.following()) | 
-                      (Message.user == user))
+                .where(Message.user)
                 .order_by(
                     Message.published_at.desc()))
        
