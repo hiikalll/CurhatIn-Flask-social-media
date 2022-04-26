@@ -18,7 +18,7 @@ Use basic crud operations like :
   <li>Delete post</li>
 </ul>
 
-Using peewee which is si ple and light ORM 
+Using peewee which is simple and light ORM 
 
 And bootstrap as our frontend framework.
 
